@@ -84,7 +84,7 @@ background-color: rgb(235, 240, 235);
     color: white;
     justify-content: center;
 }
-.loader {
+#loadingState {
   margin: 20px auto;
   width: 40px;
   height: 40px;
@@ -99,15 +99,35 @@ background-color: rgb(235, 240, 235);
     transform: rotate(360deg);
   }
 }
-.Hidden{
-flex-basis: 180px ;
-background-color: aliceblue;
-display: flex;
-justify-content: center;
-align-items: center;
-align-content: center;
+#errorState {
+  
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 100%;
+  max-width: 900px; 
+
+  background-color: #8b1c1c;
+  color: #fff;
+
+  padding: 12px 20px;
+  border-radius: 8px;
+
+  font-size: 14px;
+  text-align: left;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 1000;
+  animation: fadeOut 3s forwards;
 }
-.profile-card {
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+#userprofil{
   display: flex;
   align-items: flex-start;
   gap: 20px;
@@ -174,4 +194,33 @@ align-content: center;
   border-radius: 8px;
   cursor: pointer;
   color: white;
+}
+#reposList {
+  width: 700px;
+  margin: 20px auto;
+}
+
+.repo-card {
+  display: flex;
+  justify-content: space-between;
+  background: #78867b;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+.repos h2 {
+color: white;}
+
+.repo-card h3 {
+  margin: 0;
+}
+
+.repo-card p {
+  margin: 5px 0;
+  color: white;
+}
+
+.repo-card span {
+  color: gold;
 }
