@@ -84,6 +84,20 @@ background-color: rgb(235, 240, 235);
     color: white;
     justify-content: center;
 }
+#welcomeState {
+  display: none;
+  text-align: center;
+  margin-top: 40px;
+  color: white;
+}
+
+.welcome-box {
+  background: #1f2a3a;
+  padding: 30px;
+  border-radius: 12px;
+  width: 600px;
+  margin: auto;
+}
 #loadingState {
   margin: 20px auto;
   width: 40px;
@@ -92,6 +106,7 @@ background-color: rgb(235, 240, 235);
   border-top: 4px solid green;
   border-radius: 50%;
   animation: spin 1s linear infinite;
+  display: none;
 }
 
 @keyframes spin {
@@ -155,6 +170,9 @@ background-color: rgb(235, 240, 235);
 .username {
   color: #aaa;
   margin: 5px 0;
+}
+#userprofil {
+  display: none;
 }
 
 .bio {
@@ -223,4 +241,7 @@ color: white;}
 
 .repo-card span {
   color: gold;
+}
+#welcomeState {
+  display: none;
 }
