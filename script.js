@@ -61,3 +61,85 @@ async function fetchUser(username) {
 
   }
 }
+async function fetchUserRepos(username) {
+
+  try {
+
+    const response = await fetch(
+      `https://api.github.com/users/${username}/repos?sort=stars&per_page=5`, 
+      {
+        headers : {
+            Authorization: `token ${env.Token}`
+       }
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Error loading repos");
+    }
+
+    const repos = await response.json();
+
+    displayRepositories(repos);
+
+    loadingState.style.display = "none";
+
+  } catch (error) {
+    showError(error.message);
+  }
+}
+
+function showLoading() {
+  loadingState.style.display = "block";
+  userProfile.style.display = "none";
+  reposList.innerHTML = "";
+  errorState.style.display = "none";
+  welcomeState.style.display = "none"; 
+}
+
+function showError(message) {
+  errorState.innerHTML = message;
+  errorState.style.display = "block";
+  loadingState.style.display = "none";
+  userProfile.style.display = "none";
+  reposList.innerHTML = "";
+}
+
+function showWelcome() {
+  welcomeState.style.display = "block";
+  userProfile.style.display = "none";
+  reposList.innerHTML = "";
+  errorState.style.display = "none";
+  loadingState.style.display = "none"; 
+}
+function displayUserProfile(user) {
+  userProfile.style.display = "flex";
+
+  userProfile.innerHTML = `
+    <img src="${user.avatar_url}" class="avatar">
+    <div class="profile-info">
+      <h2>${user.name || "No Name"}</h2>
+      <p class="username">@${user.login}</p>
+      <p class="bio">${user.bio || "No bio available"}</p>
+
+      <div class="stats">
+        <div>
+          <p>Followers</p>
+          <strong>${user.followers}</strong>
+        </div>
+        <div>
+          <p>Following</p>
+          <strong>${user.following}</strong>
+        </div>
+        <div>
+          <p>Public Repos</p>
+          <strong>${user.public_repos}</strong>
+        </div>
+      </div>
+
+      <a href="${user.html_url}" target="_blank">
+        Visit GitHub Profile →
+      </a>
+    </div>
+  `;
+}

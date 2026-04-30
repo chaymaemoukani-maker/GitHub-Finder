@@ -1,7 +1,7 @@
-body{
-margin: 0%;
-font-family: Georgia, 'Times New Roman', Times, serif;
-background-color:rgb(19, 18, 18) ;
+
+body {
+  background: #0f172a; 
+  color: white;
 }
 .navbar{
 display: flex;
@@ -11,6 +11,9 @@ background-color: grey;
 color: white;
 padding: 5px 20px;
 height: 40%;
+background: rgba(255,255,255,0.05);
+backdrop-filter: blur(10px);
+border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .logo{
 display: flex;
@@ -49,14 +52,18 @@ background-color: darkgreen;
   transform: scale(1.05);
   }
 .search-box input {
-  width: 800px;
+  width: 400px;
   height: 30px ;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+section {
+  margin-top: 30px;
+}
 .favoris {
   display: flex;
+  margin-left: 50%;
   padding: 8px 12px;
   border: none;
   background-color: rgb(27, 218, 186);
@@ -143,25 +150,30 @@ background-color: rgb(235, 240, 235);
 }
 
 #userprofil{
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  background: #1f2a3a;
-  color: white;
-  padding: 20px;
+  background: #1e293b;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   border-radius: 12px;
-  width: 900px;
-  margin: 40px auto;
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+.repo-card {
+  padding: 15px 20px;
+  transition: 0.2s;
 }
 
+.repo-card:hover {
+  transform: translateY(-3px);
+  background: #273449;
+}
 
 .avatar {
   width: 80px;
   height: 80px;
   border-radius: 50%;
 }
-
 
 .profile-info h2 {
   margin: 0;
