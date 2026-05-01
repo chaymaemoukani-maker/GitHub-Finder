@@ -12,13 +12,15 @@
     <header class="navbar">
         <div class="logo">
         <img src="git hub.png" alt="git" class="logo-img">GitHub Finder Profil</div>
-     <button class="favoris"id="bookmarkBtn">
      
 
-        <img src="image/save.png" alt="save" class="icon">
-        Bookmarks
-     </button>
-      <div id="bookmarksList"></div>
+       <button class="favoris" id="bookmarkToggle">
+  Bookmarks (<span id="bookmarkCount">0</span>)
+</button>
+
+<div id="bookmarksList" style="display:none;"></div>
+        
+     
     </header>
 
     <div class="search-box">
@@ -64,7 +66,7 @@
     <a href="#">Visit GitHub Profile →</a>
   </div> -->
 
- <button class="bookmark">⭐ Bookmark</button> 
+ <button class="bookmark" id="bookmarkBtnProfile">⭐ Bookmark</button>
 </section>
    
 

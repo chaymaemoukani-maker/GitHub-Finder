@@ -3,7 +3,11 @@
     currentUser: null,
     bookmarks: [],
     isViewingBookmarks: false
+   
   };
+  loadBookmarks();
+updateBookmarksUI();
+  
 
   const searchInput = document.getElementById('search-box');
   const searchBtn = document.getElementById('btn-search');
@@ -51,11 +55,12 @@ async function fetchUser(username) {
     }
 
     const data = await response.json();
-
+    state.currentUser = data;
     displayUserProfile(data); 
     fetchUserRepos(username);
 
-  } catch (error) {
+  } 
+  catch (error) {
 
     showError(error.message);
 
@@ -112,6 +117,9 @@ function showWelcome() {
   errorState.style.display = "none";
   loadingState.style.display = "none"; 
 }
+function saveBookmarks() {
+  localStorage.setItem("bookmarks", JSON.stringify(state.bookmarks));
+}
 function displayUserProfile(user) {
   userProfile.style.display = "flex";
 
@@ -140,8 +148,16 @@ function displayUserProfile(user) {
       <a href="${user.html_url}" target="_blank">
         Visit GitHub Profile →
       </a>
+
+      <button id="bookmarkBtnProfile">⭐ Bookmark</button>
     </div>
   `;
+
+  const btn = document.getElementById("bookmarkBtnProfile");
+
+  btn.addEventListener("click", () => {
+    addBookmark(state.currentUser);
+  });
 }
 function displayRepositories(repos) {
   reposList.innerHTML = "";
@@ -154,6 +170,37 @@ function displayRepositories(repos) {
         ⭐ ${repo.stargazers_count}
       </div>
     `;
+  });
+}
+function loadBookmarks() {
+  const data = localStorage.getItem("bookmarks");
+  if (data) {
+    state.bookmarks = JSON.parse(data);
+  }
+}
+
+function updateBookmarksUI() {
+  const container = document.getElementById("bookmarksList");
+  const count = document.getElementById("bookmarkCount");
+
+  container.innerHTML = "";
+
+  count.textContent = state.bookmarks.length;
+
+  state.bookmarks.forEach(user => {
+    const div = document.createElement("div");
+    div.classList.add("bookmark-item");
+
+    div.innerHTML = `
+      <span>${user.login}</span>
+    `;
+
+    div.addEventListener("click", () => {
+      fetchUser(user.login);
+      container.style.display = "none";
+    });
+
+    container.appendChild(div);
   });
 }
 
@@ -173,8 +220,56 @@ function addBookmark(user) {
   saveBookmarks();
   updateBookmarksUI();
 }
+function removeBookmark(id) {
+  state.bookmarks = state.bookmarks.filter(user => user.id != id);
+  saveBookmarks();
+  updateBookmarksUI();
+}
+function showBookmarksPage() {
 
+  welcomeState.style.display = "none";
+  loadingState.style.display = "none";
+  errorState.style.display = "none";
 
+  userProfile.style.display = "none";
+  reposList.innerHTML = "<h2>⭐ My Bookmarks</h2>";
+
+  state.bookmarks.forEach(user => {
+    reposList.innerHTML += `
+      <div class="repo-card bookmark-card">
+        <img src="${user.avatar_url}" class="avatar">
+
+        <div style="flex:1">
+          <h3>${user.name || "No Name"}</h3>
+          <p>@${user.login}</p>
+        </div>
+
+        <button class="delete-btn" data-id="${user.id}">
+          ❌
+        </button>
+      </div>
+    `;
+  });
+
+  document.querySelectorAll(".bookmark-card").forEach((card, index) => {
+    card.addEventListener("click", (e) => {
+      if (e.target.classList.contains("delete-btn")) return;
+      fetchUser(state.bookmarks[index].login);
+    });
+  });
+
+  document.querySelectorAll(".delete-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      removeBookmark(btn.dataset.id);
+      showBookmarksPage(); // refresh
+    });
+  });
+}
+const bookmarkToggle = document.getElementById("bookmarkToggle");
+bookmarkToggle.addEventListener("click", () => {
+  showBookmarksPage();
+});
 
 searchBtn.addEventListener("click", () => {
   const username = searchInput.value.trim();

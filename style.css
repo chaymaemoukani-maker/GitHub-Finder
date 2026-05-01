@@ -1,81 +1,107 @@
-
+:root {
+  --bg: #0b0b14;
+  --card: rgba(255, 255, 255, 0.08);
+  --pink: #ff8fcf;
+  --lavender: #b8a1ff;
+  --mint: #7fffd4;
+  --text: #ffffff;
+}
 body {
-  background: #0f172a; 
-  color: white;
-}
-.navbar{
-display: flex;
-align-items: center;
-justify-content: space-between;
-background-color: grey;
-color: white;
-padding: 5px 20px;
-height: 40%;
-background: rgba(255,255,255,0.05);
-backdrop-filter: blur(10px);
-border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-.logo{
-display: flex;
-color: rgb(251, 251, 255);
-font-size: 20px;
-font-weight: bolder;
-align-items: center;
-gap: 6px;
-}
-.search-box{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  margin-top: 50px;
-  padding: 12px;
-  border-radius: 10px;
-  background: rgba(86, 80, 80, 0.4);
-  backdrop-filter: blur(6px);
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
+  background: radial-gradient(circle at top, #1a1033, #0b0b14);
+  color: var(--text);
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
 }
 
- .search-btn {
-  padding: 10px 15px;
-  border: none;
-  background-color: green;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
- 
+body::before {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,143,207,0.15), transparent 60%),
+              radial-gradient(circle, rgba(184,161,255,0.15), transparent 60%),
+              radial-gradient(circle, rgba(127,255,212,0.1), transparent 60%);
+  animation: floatGlow 10s infinite alternate;
+  pointer-events: none;
 }
-.search-btn:hover{ 
-background-color: darkgreen;
+
+@keyframes floatGlow {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(20px); }
+}
+
+.navbar {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 20px rgba(255, 143, 207, 0.2);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+
+  text-shadow: 0 0 10px rgba(255, 143, 207, 0.7),
+               0 0 20px rgba(184, 161, 255, 0.5);
+
+  padding: 6px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+
+  transition: 0.3s;
+}
+.logo:hover {
   transform: scale(1.05);
-  }
+  box-shadow: 0 0 20px rgba(255, 143, 207, 0.6);
+   transition: all 0.3s ease;
+}
+.search-box {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+
 .search-box input {
   width: 400px;
-  height: 30px ;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 12px 15px;
+
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+
+  background: rgba(255,255,255,0.05);
+  color: white;
+
+  outline: none;
 }
 section {
   margin-top: 30px;
 }
 .favoris {
   display: flex;
-  margin-left: 50%;
+  align-items: center;
+  gap: 6px;
   padding: 8px 12px;
   border: none;
   background-color: rgb(27, 218, 186);
-  color: rgb(15, 15, 15);
+  color: black;
   border-radius: 5px;
   cursor: pointer;
-  align-items: center;
-  gap: 6px;
 }
 .favoris:hover{ 
 background-color: rgb(235, 240, 235);
   transform: scale(1.05);
+   transition: all 0.3s ease;
   }
 .icon {
   width: 18px;
@@ -84,7 +110,27 @@ background-color: rgb(235, 240, 235);
 .logo-img{
   width: 40px;
   height: 40px;
-  background-color: white;
+  object-fit: cover;
+  border-radius: 50%; 
+  
+  background-color: #fff0f5;
+
+
+  box-shadow: 
+    0 0 10px rgba(255, 182, 193, 0.6),
+    0 0 20px rgba(255, 192, 203, 0.4);
+
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.logo-img:hover{
+  transform: scale(1.1) rotate(-3deg);
+  box-shadow: 
+    0 0 15px rgba(255, 182, 193, 0.8),
+    0 0 30px rgba(255, 105, 180, 0.5);
+     transition: all 0.3s ease;
 }
 .hero{
     display: flex;
@@ -109,11 +155,11 @@ background-color: rgb(235, 240, 235);
   margin: 20px auto;
   width: 40px;
   height: 40px;
-  border: 4px solid #ccc;
-  border-top: 4px solid green;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   display: none;
+  border: 4px solid rgba(255,255,255,0.2);
+  border-top: 4px solid var(--pink);
 }
 
 @keyframes spin {
@@ -122,7 +168,8 @@ background-color: rgb(235, 240, 235);
   }
 }
 #errorState {
-  
+ 
+  display: none;
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
@@ -150,29 +197,60 @@ background-color: rgb(235, 240, 235);
 }
 
 #userprofil{
-  background: #1e293b;
+ 
   border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   border-radius: 12px;
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 20px;
-}
-.repo-card {
-  padding: 15px 20px;
-  transition: 0.2s;
-}
-
-.repo-card:hover {
-  transform: translateY(-3px);
-  background: #273449;
+  background: rgba(255,255,255,0.05);
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
+
+.bookmark-card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 15px;
+  margin: 10px 0;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 15px rgba(184,161,255,0.15);
+  transition: 0.3s;
+}
+
+.repo-card:hover,
+.bookmark-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 0 25px rgba(255, 143, 207, 0.5);
+   transition: all 0.3s ease;
+}
 .avatar {
   width: 80px;
   height: 80px;
   border-radius: 50%;
+  border: 2px solid var(--pink);
+  box-shadow: 0 0 10px rgba(255, 143, 207, 0.5);
+}
+button {
+  border: none;
+  padding: 10px 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  background: linear-gradient(45deg, var(--pink), var(--lavender));
+  color: white;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 143, 207, 0.6);
+   transition: all 0.3s ease;
 }
 
 .profile-info h2 {
@@ -182,9 +260,6 @@ background-color: rgb(235, 240, 235);
 .username {
   color: #aaa;
   margin: 5px 0;
-}
-#userprofil {
-  display: none;
 }
 
 .bio {
@@ -197,7 +272,6 @@ background-color: rgb(235, 240, 235);
   gap: 30px;
   margin: 15px 0;
 }
-
 .stats p {
   font-size: 12px;
   color: #aaa;
@@ -214,31 +288,78 @@ background-color: rgb(235, 240, 235);
   text-decoration: none;
 }
 
-.bookmark {
+#bookmarkBtnProfile {
+  position: relative;
+  overflow: hidden;
+}
+
+#bookmarkBtnProfile::after {
+  content: "🌸";
   position: absolute;
-  top: 20px;
-  right: 20px;
-  background: orange;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
+  top: -10px;
+  right: 10px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+#bookmarkBtnProfile:hover::after {
+  opacity: 1;
+  transform: translateY(5px) rotate(20deg);
+   transition: all 0.3s ease;
+}
+#bookmarkBtnProfile:hover {
+  background: linear-gradient(135deg, #f9a8d4, #fbcfe8);
+  transform: scale(1.08);
+  box-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
   color: white;
+  transition: all 0.3s ease;
+}
+#bookmarksList {
+  display: flex;
+  position: absolute;
+  top: 70px;
+  right: 40px;
+  flex-direction: column;
+  background: rgba(0,0,0,0.9);
+  padding: 10px;
+  border-radius: 10px;
+  gap: 8px;
+  min-width: 150px;
+}
+
+.bookmark-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.08);
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.bookmark-item:hover {
+  background: rgba(255,255,255,0.2);
+   transition: all 0.3s ease;
 }
 #reposList {
   width: 700px;
   margin: 20px auto;
+  
 }
 
 .repo-card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 15px;
+  margin: 10px 0;
+  transition: 0.3s;
   display: flex;
   justify-content: space-between;
-  background: #78867b;
-  color: white;
-  padding: 15px;
-  border-radius: 8px;
-  margin-top: 10px;
+  align-items: center;
 }
+
+
 .repos h2 {
 color: white;}
 
@@ -253,7 +374,4 @@ color: white;}
 
 .repo-card span {
   color: gold;
-}
-#welcomeState {
-  display: none;
 }
