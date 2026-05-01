@@ -143,3 +143,54 @@ function displayUserProfile(user) {
     </div>
   `;
 }
+function displayRepositories(repos) {
+  reposList.innerHTML = "";
+
+  repos.forEach(repo => {
+    reposList.innerHTML += `
+      <div class="repo-card">
+        <h3>${repo.name}</h3>
+        <p>${repo.description || "No description"}</p>
+        ⭐ ${repo.stargazers_count}
+      </div>
+    `;
+  });
+}
+
+function addBookmark(user) {
+  const exists = state.bookmarks.some(b => b.id === user.id);
+  
+  if (exists) return;
+
+  const bookmark = {
+    id: user.id,
+    login: user.login,
+    name: user.name,
+    avatar_url: user.avatar_url
+  };
+
+  state.bookmarks.push(bookmark);
+  saveBookmarks();
+  updateBookmarksUI();
+}
+
+
+
+searchBtn.addEventListener("click", () => {
+  const username = searchInput.value.trim();
+  console.log("USERNAME:", username); 
+
+  if (!username) return;
+
+  fetchUser(username);
+});
+
+searchInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    const username = searchInput.value.trim();
+    if (!username) return;
+
+    fetchUser(username);
+  }
+});
+showWelcome();
