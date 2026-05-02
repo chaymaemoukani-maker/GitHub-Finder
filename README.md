@@ -42,5 +42,14 @@ User can bookmark profiles for later
 404 → User not found
 403 → API rate limit reached
 Network errors → General error message
+### 📌 Learning Goals 
+Working with REST APIs
+Using async/await in JavaScript
+Handling API responses and errors
+DOM manipulation
+State management
+Using LocalStorage
 
+#### 👩‍💻 Author 
+Developed by **Chaymae**
 
