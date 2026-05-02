@@ -17,5 +17,8 @@
 - JavaScript 
 - GitHub REST API
 - LocalStorage
+### 🔗 API Used
+#### Get user info:
+```https://api.github.com/users/{username}```
 
 
