@@ -11,5 +11,11 @@
 7. 📱 Responsive and modern UI
 
 
+### 🛠️ Technologies Used 
+- HTML5
+- CSS3 (modern UI with animations)
+- JavaScript 
+- GitHub REST API
+- LocalStorage
 
 
