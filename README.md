@@ -20,5 +20,13 @@
 ### 🔗 API Used
 #### Get user info:
 ```https://api.github.com/users/{username}```
-
-
+#### Get repositories:
+``` https://api.github.com/users/{username}/repos?sort=stars&per_page=5 ```
+### 📦 Project Structure
+```bash
+├── index.html
+├── style.css
+├── script.js
+├── config.js
+└── README.md
+```
