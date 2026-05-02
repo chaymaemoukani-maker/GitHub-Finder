@@ -38,4 +38,9 @@ Profile data is fetched and displayed
 Repositories are loaded and shown
 User can bookmark profiles for later
 ```
+### ❌ Error Handling 
+404 → User not found
+403 → API rate limit reached
+Network errors → General error message
+
 
