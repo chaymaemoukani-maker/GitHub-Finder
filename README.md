@@ -30,3 +30,12 @@
 ├── config.js
 └── README.md
 ```
+### ⚙️ How it works 
+```
+User enters a GitHub username
+App sends request to GitHub API
+Profile data is fetched and displayed
+Repositories are loaded and shown
+User can bookmark profiles for later
+```
+
